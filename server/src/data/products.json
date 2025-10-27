@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Base Matte", "price": 129.9, "category": "Maquiagem" },
+    { "id": 2, "name": "Serum Facial", "price": 89.9, "category": "Skincare" },
+    { "id": 3, "name": "Bolsa Elegance", "price": 249.0, "category": "Moda" }
+  ]
+  
