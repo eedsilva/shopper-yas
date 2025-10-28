@@ -7,6 +7,7 @@ import { MotionConfig } from "framer-motion";
 import App from "./App";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import AdminDashboard from "./pages/AdminDashboard";
+import Checkout from "./pages/Checkout";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { LocalizationProvider } from "./contexts/LocalizationContext";
@@ -27,6 +28,7 @@ ReactDOM.createRoot(rootElement).render(
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<App />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route element={<ProtectedAdminRoute />}>
                   <Route path="/admin" element={<AdminDashboard />} />
                 </Route>

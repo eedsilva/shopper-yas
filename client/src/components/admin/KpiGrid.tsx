@@ -1,35 +1,46 @@
 import { useMemo } from "react";
 
 import { useLocalization, useMessages } from "../../contexts/LocalizationContext";
-import type { InventorySummary } from "../../types";
+import type { InventorySummary, OrderSummary } from "../../types";
 
 interface KpiGridProps {
   summary: InventorySummary | null;
+  orderSummary: OrderSummary | null;
 }
 
 function formatNumber(value: number): string {
   return new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
 }
 
-function KpiGrid({ summary }: KpiGridProps): JSX.Element {
+function KpiGrid({ summary, orderSummary }: KpiGridProps): JSX.Element {
   const { formatCurrency } = useLocalization();
   const {
     admin: { metrics }
   } = useMessages();
 
   const items = useMemo(() => {
-    if (!summary) {
-      return metrics.placeholders;
-    }
-    return [
-      { label: metrics.totalProducts, value: formatNumber(summary.totalProducts) },
-      { label: metrics.totalStock, value: formatNumber(summary.totalStock) },
-      { label: metrics.totalSold, value: formatNumber(summary.totalSold) },
-      { label: metrics.inventoryValue, value: formatCurrency(summary.inventoryValue) },
-      { label: metrics.salesRevenue, value: formatCurrency(summary.salesRevenue) },
-      { label: metrics.potentialRevenue, value: formatCurrency(summary.potentialRevenue) }
-    ];
-  }, [summary, metrics, formatCurrency]);
+    const inventoryItems = summary
+      ? [
+          { label: metrics.totalProducts, value: formatNumber(summary.totalProducts) },
+          { label: metrics.totalStock, value: formatNumber(summary.totalStock) },
+          { label: metrics.totalSold, value: formatNumber(summary.totalSold) },
+          { label: metrics.inventoryValue, value: formatCurrency(summary.inventoryValue) },
+          { label: metrics.salesRevenue, value: formatCurrency(summary.salesRevenue) },
+          { label: metrics.potentialRevenue, value: formatCurrency(summary.potentialRevenue) }
+        ]
+      : metrics.placeholders.slice(0, 6);
+
+    const orderItems = orderSummary
+      ? [
+          { label: metrics.totalOrders, value: formatNumber(orderSummary.totalOrders) },
+          { label: metrics.pendingOrders, value: formatNumber(orderSummary.pendingOrders) },
+          { label: metrics.paidOrders, value: formatNumber(orderSummary.paidOrders) },
+          { label: metrics.averageOrderValue, value: formatCurrency(orderSummary.averageOrderValue) }
+        ]
+      : metrics.placeholders.slice(6);
+
+    return [...inventoryItems, ...orderItems];
+  }, [summary, orderSummary, metrics, formatCurrency]);
 
   return (
     <section className="admin-section" aria-labelledby="admin-metrics-heading">

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -18,6 +19,12 @@ function CartDrawer(): JSX.Element {
     updateQuantity
   } = useCart();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  let navigate: ReturnType<typeof useNavigate> | null = null;
+  try {
+    navigate = useNavigate();
+  } catch {
+    navigate = null;
+  }
   const shouldReduceMotion = useReducedMotion();
 
   useDialogFocus(isOpen, closeButtonRef);
@@ -144,7 +151,20 @@ function CartDrawer(): JSX.Element {
                 <span>{cart.subtotal}</span>
                 <strong>{formatCurrency(subtotal)}</strong>
               </div>
-              <button type="button" className="cart-drawer__checkout" disabled={items.length === 0}>
+              <button
+                type="button"
+                className="cart-drawer__checkout"
+                disabled={items.length === 0}
+                onClick={() => {
+                  if (items.length === 0) {
+                    return;
+                  }
+                  closeCart();
+                  if (navigate) {
+                    navigate("/checkout");
+                  }
+                }}
+              >
                 {cart.checkout}
               </button>
             </footer>

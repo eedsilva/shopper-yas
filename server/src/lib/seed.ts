@@ -21,6 +21,8 @@ export async function seedDatabase() {
   const products: SeedProduct[] = JSON.parse(file);
 
   await db.transaction().execute(async (trx) => {
+    await trx.deleteFrom("OrderItem").execute();
+    await trx.deleteFrom("Order").execute();
     await trx.deleteFrom("ProductTag").execute();
     await trx.deleteFrom("Tag").execute();
     await trx.deleteFrom("Product").execute();

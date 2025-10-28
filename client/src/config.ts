@@ -20,5 +20,5 @@ function parseBoolean(value: string | undefined, defaultValue: boolean): boolean
 }
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:4000/api";
-export const USE_MOCK_DATA = parseBoolean(import.meta.env.VITE_USE_MOCK_DATA, true);
+export const USE_MOCK_DATA = parseBoolean(import.meta.env.VITE_USE_MOCK_DATA, false);
 export const ADMIN_ACCESS_CODE = import.meta.env.VITE_ADMIN_ACCESS_CODE ?? "admin";
