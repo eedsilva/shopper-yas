@@ -1,19 +1,18 @@
 import { Router } from "express";
-import fs from "fs";
-import path from "path";
+import { getProductById, getProducts } from "../services/productService";
 
 const router = Router();
-const dataPath = path.join(__dirname, "../data/products.json");
 
 router.get("/", (_, res) => {
-  const data = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-  res.json(data);
+  res.json(getProducts());
 });
 
 router.get("/:id", (req, res) => {
-  const data = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-  const product = data.find((p: any) => p.id === Number(req.params.id));
-  product ? res.json(product) : res.status(404).json({ message: "Not found" });
+  const product = getProductById(Number(req.params.id));
+  if (!product) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  return res.json(product);
 });
 
 export default router;

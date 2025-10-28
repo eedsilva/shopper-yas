@@ -1,6 +1,74 @@
 [
-    { "id": 1, "name": "Base Matte", "price": 129.9, "category": "Maquiagem" },
-    { "id": 2, "name": "Serum Facial", "price": 89.9, "category": "Skincare" },
-    { "id": 3, "name": "Bolsa Elegance", "price": 249.0, "category": "Moda" }
-  ]
-  
+  {
+    "id": 1,
+    "name": "Luna Silk Shirt Dress",
+    "description": "Fluid silk charmeuse with a removable belt and French-seamed finishing.",
+    "price": 298,
+    "category": "Dresses",
+    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+    "tags": ["silk", "evening", "limited"]
+  },
+  {
+    "id": 2,
+    "name": "Harbor Linen Blazer",
+    "description": "Relaxed tailoring in breathable European flax with corozo buttons.",
+    "price": 248,
+    "category": "Outerwear",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "tags": ["linen", "summer", "unstructured"]
+  },
+  {
+    "id": 3,
+    "name": "Solstice Wide-Leg Trouser",
+    "description": "Crisp pleated trouser with adjustable waist tabs and full lining.",
+    "price": 210,
+    "category": "Bottoms",
+    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+    "tags": ["tailored", "wardrobe", "signature"]
+  },
+  {
+    "id": 4,
+    "name": "Aurora Cashmere Crew",
+    "description": "Grade-A Mongolian cashmere with a sculpted neckline and rib detail.",
+    "price": 320,
+    "category": "Knitwear",
+    "image": "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80",
+    "tags": ["cashmere", "heritage", "best seller"]
+  },
+  {
+    "id": 5,
+    "name": "Atlas Leather Tote",
+    "description": "Italian vegetable-tanned leather with suede lining and laptop sleeve.",
+    "price": 425,
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=900&q=80",
+    "tags": ["handcrafted", "travel", "utility"]
+  },
+  {
+    "id": 6,
+    "name": "Halo Sculpted Heel",
+    "description": "Architectural heel wrapped in nappa leather with memory-foam insole.",
+    "price": 285,
+    "category": "Footwear",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+    "tags": ["statement", "evening", "artisan"]
+  },
+  {
+    "id": 7,
+    "name": "Meridian Wool Coat",
+    "description": "Double-faced wool-cashmere blend with hand-finished seams.",
+    "price": 540,
+    "category": "Outerwear",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+    "tags": ["investment", "winter", "tailored"]
+  },
+  {
+    "id": 8,
+    "name": "Celeste Pearl Earrings",
+    "description": "Hand-set freshwater pearls on recycled 18k gold vermeil.",
+    "price": 160,
+    "category": "Jewelry",
+    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+    "tags": ["bridal", "gift", "limited edition"]
+  }
+]
