@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { generateAdminToken } from "../lib/adminAuth";
 
 const ADMIN_ACCESS_CODE = process.env.ADMIN_ACCESS_CODE ?? "admin";
 
@@ -13,7 +14,8 @@ router.post("/login", (req, res) => {
 
   const normalized = code.trim();
   if (normalized === ADMIN_ACCESS_CODE) {
-    return res.json({ success: true });
+    const token = generateAdminToken();
+    return res.json({ success: true, token });
   }
 
   return res.status(401).json({ success: false, message: "Invalid access code" });
