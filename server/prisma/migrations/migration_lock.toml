@@ -1,0 +1,2 @@
+# This file is created by Prisma to track migrations.
+provider = "sqlite"
