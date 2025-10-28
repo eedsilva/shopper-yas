@@ -22,7 +22,7 @@ router.get("/analytics/summary", async (req, res) => {
     const summary = await getInventorySummary();
     res.json(summary);
   } catch (error) {
-    console.error("Failed to fetch inventory summary", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to fetch inventory summary");
     res.status(500).json({ message: "Failed to fetch inventory summary" });
   }
 });
@@ -32,7 +32,7 @@ router.get("/analytics/categories", async (req, res) => {
     const breakdown = await getCategoryBreakdown();
     res.json(breakdown);
   } catch (error) {
-    console.error("Failed to fetch category breakdown", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to fetch category breakdown");
     res.status(500).json({ message: "Failed to fetch category breakdown" });
   }
 });
@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
     const products = await listProducts(parseResult.data);
     res.json(products);
   } catch (error) {
-    console.error("Failed to fetch products", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to fetch products");
     res.status(500).json({ message: "Failed to fetch products" });
   }
 });
@@ -68,7 +68,7 @@ router.get("/:id", async (req, res) => {
     }
     res.json(product);
   } catch (error) {
-    console.error("Failed to fetch product", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to fetch product");
     res.status(500).json({ message: "Failed to fetch product" });
   }
 });
@@ -86,7 +86,7 @@ router.post("/", requireAdmin, async (req, res) => {
     const product = await createProduct(parseResult.data);
     res.status(201).json(product);
   } catch (error) {
-    console.error("Failed to create product", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to create product");
     res.status(500).json({ message: "Failed to create product" });
   }
 });
@@ -112,7 +112,7 @@ router.patch("/:id", requireAdmin, async (req, res) => {
     }
     res.json(product);
   } catch (error) {
-    console.error("Failed to update product", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to update product");
     res.status(500).json({ message: "Failed to update product" });
   }
 });
@@ -130,7 +130,7 @@ router.delete("/:id", requireAdmin, async (req, res) => {
     }
     res.status(204).send();
   } catch (error) {
-    console.error("Failed to delete product", error);
+    req.log.error({ err: error, requestId: req.id }, "Failed to delete product");
     res.status(500).json({ message: "Failed to delete product" });
   }
 });

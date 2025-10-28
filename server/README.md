@@ -38,6 +38,20 @@ The API is served from `http://localhost:4000` and exposes the following notable
 - `GET /api/products/analytics/summary` — aggregate inventory totals.
 - `GET /api/products/analytics/categories` — totals grouped by category.
 
+## Logging
+
+The API uses [`pino`](https://github.com/pinojs/pino) for structured logging. Incoming requests are recorded with unique request IDs, which are reused across downstream log messages and included in JSON error responses. A client-provided `X-Request-ID` header is honored when present; otherwise a UUID is generated. Adjust the verbosity by setting `LOG_LEVEL` (`trace`, `debug`, `info`, `warn`, `error`, or `fatal`). In test environments the logger defaults to `silent` to keep the suite output clean.
+
+Unhandled errors are captured by an Express error handler that logs the exception (including the request ID) and returns a JSON payload:
+
+```json
+{
+  "success": false,
+  "message": "Internal Server Error",
+  "requestId": "..."
+}
+```
+
 ## Testing
 
 The Vitest suite provisions an isolated SQLite database (`file:./test.db`) and covers both service helpers and HTTP endpoints:
