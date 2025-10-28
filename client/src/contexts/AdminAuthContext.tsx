@@ -1,17 +1,19 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
+import { ADMIN_ACCESS_CODE, USE_MOCK_DATA } from "../config";
+import * as adminApi from "../api/admin";
+
 interface AdminAuthContextValue {
   isAuthenticated: boolean;
-  login: (code: string) => boolean;
+  login: (code: string) => Promise<boolean>;
   logout: () => void;
 }
 
 const STORAGE_KEY = "shopperyas:admin-access";
-const DEFAULT_CODE = import.meta.env.VITE_ADMIN_ACCESS_CODE ?? "admin";
 
 const AdminAuthContext = createContext<AdminAuthContextValue>({
   isAuthenticated: false,
-  login: () => false,
+  login: async () => false,
   logout: () => undefined
 });
 
@@ -38,13 +40,30 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps): JSX.Ele
   const value = useMemo<AdminAuthContextValue>(() => {
     return {
       isAuthenticated,
-      login: (code: string) => {
+      login: async (code: string) => {
         const normalized = code.trim();
-        if (normalized && normalized === DEFAULT_CODE) {
-          setIsAuthenticated(true);
-          return true;
+        if (!normalized) {
+          return false;
         }
-        return false;
+
+        if (USE_MOCK_DATA) {
+          if (normalized === ADMIN_ACCESS_CODE) {
+            setIsAuthenticated(true);
+            return true;
+          }
+          return false;
+        }
+
+        try {
+          const success = await adminApi.login(normalized);
+          if (success) {
+            setIsAuthenticated(true);
+          }
+          return success;
+        } catch (error) {
+          console.error("Failed to authenticate admin", error);
+          throw error;
+        }
       },
       logout: () => setIsAuthenticated(false)
     };

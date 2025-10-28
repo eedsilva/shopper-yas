@@ -76,6 +76,17 @@ npm install
 Copy `.env.example` to `.env` in the repository root and adjust the values for your environment.
 
 ```
+PORT=4000
+USE_MOCK_DATA=true # set to true to serve in-memory catalog data instead of SQLite
+ADMIN_ACCESS_CODE=admin # access code validated by the /api/admin/login endpoint
+```
+
+For the client, Vite looks for `VITE_*` variables. Add a `.env` file under `client/` to customize the storefront:
+
+```
+VITE_API_BASE_URL=http://localhost:4000/api
+VITE_USE_MOCK_DATA=true # when true the UI reads/writes products from in-memory mocks
+VITE_ADMIN_ACCESS_CODE=admin
 cp .env.example .env
 ```
 
