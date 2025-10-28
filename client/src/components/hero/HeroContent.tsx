@@ -2,20 +2,23 @@ import type { HeroSlide } from "../../types";
 
 interface HeroContentProps {
   slide: HeroSlide;
+  eyebrow: string;
+  primaryCta: string;
+  secondaryCta: string;
 }
 
-function HeroContent({ slide }: HeroContentProps): JSX.Element {
+function HeroContent({ slide, eyebrow, primaryCta, secondaryCta }: HeroContentProps): JSX.Element {
   return (
     <div className="hero__content">
-      <p className="hero__eyebrow">New Season · Limited Run</p>
+      <p className="hero__eyebrow">{eyebrow}</p>
       <h1>{slide.title}</h1>
       <p className="hero__description">{slide.description}</p>
       <div className="hero__cta-group">
         <button type="button" className="hero__cta hero__cta--primary">
-          Explore collection
+          {primaryCta}
         </button>
         <button type="button" className="hero__cta hero__cta--ghost">
-          Watch the story
+          {secondaryCta}
         </button>
       </div>
     </div>

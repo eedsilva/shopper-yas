@@ -1,9 +1,15 @@
-function FooterLinks(): JSX.Element {
+interface FooterLinksProps {
+  termsLabel: string;
+  privacyLabel: string;
+  email: string;
+}
+
+function FooterLinks({ termsLabel, privacyLabel, email }: FooterLinksProps): JSX.Element {
   return (
     <div className="footer__links">
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
-      <a href="mailto:hello@shopperyas.com">hello@shopperyas.com</a>
+      <a href="/terms">{termsLabel}</a>
+      <a href="/privacy">{privacyLabel}</a>
+      <a href={`mailto:${email}`}>{email}</a>
     </div>
   );
 }

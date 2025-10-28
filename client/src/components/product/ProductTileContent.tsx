@@ -5,9 +5,11 @@ interface ProductTileContentProps {
   product: Product;
   price: string;
   variant?: ProductTileVariant;
+  onAddToCart?: () => void;
+  addLabel: string;
 }
 
-function ProductTileContent({ product, price, variant }: ProductTileContentProps): JSX.Element {
+function ProductTileContent({ product, price, variant, onAddToCart, addLabel }: ProductTileContentProps): JSX.Element {
   return (
     <div className="product-tile__content">
       <p className="product-tile__category">{product.category}</p>
@@ -20,7 +22,7 @@ function ProductTileContent({ product, price, variant }: ProductTileContentProps
           ))}
         </ul>
       ) : null}
-      <ProductTileFooter price={price} variant={variant} />
+      <ProductTileFooter price={price} variant={variant} onAddToCart={onAddToCart} label={addLabel} />
     </div>
   );
 }

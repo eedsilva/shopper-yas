@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { HeroContent, HeroControls, HeroMedia, heroSlides } from "./hero";
+import { useMessages } from "../contexts/LocalizationContext";
+import { HeroContent, HeroControls, HeroMedia } from "./hero";
 import type { HeroSlide } from "./hero";
 
 const AUTO_ROTATE_MS = 6000;
 
 function HeroCarousel(): JSX.Element {
+  const { hero } = useMessages();
+  const heroSlides = hero.slides;
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const slideCount = heroSlides.length;
 
@@ -28,12 +31,18 @@ function HeroCarousel(): JSX.Element {
   return (
     <section id="hero" className="hero">
       <HeroMedia slides={heroSlides} activeIndex={activeIndex} />
-      <HeroContent slide={activeSlide} />
+      <HeroContent
+        slide={activeSlide}
+        eyebrow={hero.eyebrow}
+        primaryCta={hero.primaryCta}
+        secondaryCta={hero.secondaryCta}
+      />
       <HeroControls
         slides={heroSlides}
         activeIndex={activeIndex}
         onSelect={setActiveIndex}
         onStep={handleStep}
+        labels={hero.controls}
       />
     </section>
   );

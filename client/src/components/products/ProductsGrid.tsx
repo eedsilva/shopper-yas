@@ -6,9 +6,19 @@ interface ProductsGridProps {
   isLoading: boolean;
   products: Product[];
   spotlight: Product | null;
+  onSelectProduct: (product: Product) => void;
+  onAddToCart: (product: Product) => void;
+  addLabel: string;
 }
 
-function ProductsGrid({ isLoading, products, spotlight }: ProductsGridProps): JSX.Element {
+function ProductsGrid({
+  isLoading,
+  products,
+  spotlight,
+  onSelectProduct,
+  onAddToCart,
+  addLabel
+}: ProductsGridProps): JSX.Element {
   if (isLoading) {
     return (
       <div className="products__grid">
@@ -21,9 +31,23 @@ function ProductsGrid({ isLoading, products, spotlight }: ProductsGridProps): JS
 
   return (
     <div className="products__grid">
-      {spotlight ? <ProductTile product={spotlight} variant="spotlight" /> : null}
+      {spotlight ? (
+        <ProductTile
+          product={spotlight}
+          variant="spotlight"
+          onSelect={onSelectProduct}
+          onAddToCart={onAddToCart}
+          addLabel={addLabel}
+        />
+      ) : null}
       {products.map((product) => (
-        <ProductTile key={product.id} product={product} />
+        <ProductTile
+          key={product.id}
+          product={product}
+          onSelect={onSelectProduct}
+          onAddToCart={onAddToCart}
+          addLabel={addLabel}
+        />
       ))}
     </div>
   );
