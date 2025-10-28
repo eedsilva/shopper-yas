@@ -69,12 +69,11 @@ shopper-yas/
 ```bash
 git clone https://github.com/<your-org>/shopper-yas.git
 cd shopper-yas
-npm install --prefix client
-npm install --prefix server
+npm install
 ```
 
 ### Environment Variables
-The API reads `PORT` from the environment. Create a `.env` file under `server/` if you want to override the default port (4000).
+Copy `.env.example` to `.env` in the repository root and adjust the values for your environment.
 
 ```
 PORT=4000
@@ -88,27 +87,48 @@ For the client, Vite looks for `VITE_*` variables. Add a `.env` file under `clie
 VITE_API_BASE_URL=http://localhost:4000/api
 VITE_USE_MOCK_DATA=true # when true the UI reads/writes products from in-memory mocks
 VITE_ADMIN_ACCESS_CODE=admin
+cp .env.example .env
 ```
+
+| Variable | Description |
+| --- | --- |
+| `VITE_API_BASE_URL` | Base URL the React app uses for API requests. Defaults to the local Express server. |
+| `PORT` | Port the Express server listens on. Defaults to `4000`. |
+| `DATABASE_URL` | SQLite connection string used by Prisma and the Kysely client. Defaults to `file:./dev.db`. |
+| `PRISMA_CLIENT_ENGINE_TYPE` | Optional. Set to `wasm` to avoid downloading native Prisma engines. |
 
 ### Running the apps
 ```bash
-# Start the API (default http://localhost:4000)
-npm run dev --prefix server
-
-# In a new terminal: start the Vite dev server (default http://localhost:5173)
-npm run dev --prefix client
+npm run dev
 ```
+
+This launches both the API (http://localhost:4000) and the Vite dev server (http://localhost:5173) using a shared proxy so the
+frontend can call `/api` without additional configuration.
+
+### Build & test
+
+```bash
+npm run build
+npm run test
+```
+
+Both commands execute across the `client` and `server` workspaces.
 
 Open the Admin tab from the storefront to manage products and orders.
 
 ## Available Scripts
 | Location | Script | Description |
 | --- | --- | --- |
+| `.` | `npm run dev` | Starts both workspaces with hot reload and an `/api` proxy. |
+| `.` | `npm run build` | Runs workspace builds (React + TypeScript). |
+| `.` | `npm run test` | Executes Vitest suites for the client and server. |
 | `client` | `npm run dev` | Launches Vite dev server with hot module reload. |
 | `client` | `npm run build` | Builds the React app for production. |
 | `client` | `npm run preview` | Serves the built app locally. |
 | `client` | `npm run test` | Runs Vitest + Testing Library suite. |
 | `server` | `npm run dev` | Runs Express API with Nodemon + ts-node. |
+| `server` | `npm run build` | Compiles the API TypeScript sources. |
+| `server` | `npm run test` | Runs the API Vitest suite with an isolated SQLite database. |
 
 ## API Reference
 | Method | Endpoint | Description |
