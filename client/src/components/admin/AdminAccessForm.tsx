@@ -12,15 +12,24 @@ function AdminAccessForm(): JSX.Element {
   } = useMessages();
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const success = login(code);
-    if (success) {
-      setError(null);
-      navigate("/admin", { replace: true });
-    } else {
+    setIsSubmitting(true);
+    try {
+      const success = await login(code);
+      if (success) {
+        setError(null);
+        navigate("/admin", { replace: true });
+      } else {
+        setError(gate.error);
+      }
+    } catch (err) {
+      console.error("Admin login failed", err);
       setError(gate.error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -43,7 +52,7 @@ function AdminAccessForm(): JSX.Element {
             />
           </label>
           {error ? <p className="admin-gate__error">{error}</p> : null}
-          <button type="submit" className="admin-gate__submit">
+          <button type="submit" className="admin-gate__submit" disabled={isSubmitting}>
             {gate.submit}
           </button>
         </form>

@@ -78,6 +78,16 @@ The API reads `PORT` from the environment. Create a `.env` file under `server/` 
 
 ```
 PORT=4000
+USE_MOCK_DATA=true # set to true to serve in-memory catalog data instead of SQLite
+ADMIN_ACCESS_CODE=admin # access code validated by the /api/admin/login endpoint
+```
+
+For the client, Vite looks for `VITE_*` variables. Add a `.env` file under `client/` to customize the storefront:
+
+```
+VITE_API_BASE_URL=http://localhost:4000/api
+VITE_USE_MOCK_DATA=true # when true the UI reads/writes products from in-memory mocks
+VITE_ADMIN_ACCESS_CODE=admin
 ```
 
 ### Running the apps
