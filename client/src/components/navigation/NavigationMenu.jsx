@@ -1,13 +1,16 @@
-const navLinks = [
-  { href: "#collections", label: "Collections" },
-  { href: "#new-arrivals", label: "New" },
-  { href: "#stories", label: "Stories" },
-  { href: "#contact", label: "Contact" }
-];
+import { useTranslation } from "react-i18next";
 
 function NavigationMenu() {
+  const { t } = useTranslation();
+  const navLinks = [
+    { href: "#collections", label: t("navigation.menu.links.collections") },
+    { href: "#new-arrivals", label: t("navigation.menu.links.new") },
+    { href: "#stories", label: t("navigation.menu.links.stories") },
+    { href: "#contact", label: t("navigation.menu.links.contact") }
+  ];
+
   return (
-    <nav className="navigation__menu" aria-label="Primary">
+    <nav className="navigation__menu" aria-label={t("navigation.menu.ariaLabel")}>
       <ul>
         {navLinks.map((link) => (
           <li key={link.href}>

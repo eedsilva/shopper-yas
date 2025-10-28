@@ -1,0 +1,122 @@
+{
+  "navigation": {
+    "brand": "Shopper <highlight>YAS</highlight>",
+    "menu": {
+      "ariaLabel": "Navegación principal",
+      "links": {
+        "collections": "Colecciones",
+        "new": "Novedades",
+        "stories": "Historias",
+        "contact": "Contacto"
+      }
+    },
+    "actions": {
+      "searchAria": "Abrir búsqueda",
+      "favoritesAria": "Ver favoritos",
+      "cta": "Descubrir el lanzamiento",
+      "languageLabel": "Idioma",
+      "languageSelectAria": "Seleccionar idioma",
+      "language": {
+        "en": "Inglés",
+        "ptBR": "Portugués (Brasil)",
+        "es": "Español"
+      }
+    }
+  },
+  "hero": {
+    "eyebrow": "Nueva temporada · Edición limitada",
+    "ctaPrimary": "Explorar colección",
+    "ctaSecondary": "Ver la historia",
+    "controls": {
+      "groupAria": "Diapositivas destacadas",
+      "previousAria": "Diapositiva anterior",
+      "nextAria": "Siguiente diapositiva",
+      "showSlideAria": "Mostrar diapositiva {{index}}"
+    },
+    "slides": {
+      "everyday": {
+        "title": "Conoce a los Íconos Cotidianos",
+        "description": "Esenciales en capas elaborados con materiales conscientes y siluetas atemporales."
+      },
+      "summer": {
+        "title": "Cápsula de Lino de Verano",
+        "description": "Tejidos ligeros, tonos costeros y sastrería que se mueve contigo."
+      },
+      "glamour": {
+        "title": "Glamour Nocturno",
+        "description": "De cenas al atardecer a terrazas — brilla con un drama sutil."
+      }
+    }
+  },
+  "highlights": {
+    "items": {
+      "mindful": {
+        "title": "Materiales conscientes",
+        "description": "Algodón orgánico, fibras regenerativas y acabados reciclados creados para perdurar."
+      },
+      "fair": {
+        "title": "Producción justa",
+        "description": "Colaboramos con talleres que promueven entornos de trabajo seguros y equitativos."
+      },
+      "circular": {
+        "title": "Futuro circular",
+        "description": "Servicios de reparación y mercado de reventa mantienen las prendas en circulación."
+      }
+    }
+  },
+  "products": {
+    "section": {
+      "eyebrow": "Novedades",
+      "title": "Hecho a medida para la temporada que viene",
+      "cta": "Ver todos los productos"
+    },
+    "error": {
+      "message": "No pudimos actualizar las últimas novedades. {{message}}",
+      "retry": "Intentar de nuevo"
+    },
+    "empty": {
+      "message": "Estamos seleccionando el próximo lanzamiento. Vuelve pronto."
+    },
+    "tile": {
+      "addToBag": "Añadir a la bolsa"
+    }
+  },
+  "testimonials": {
+    "intro": {
+      "eyebrow": "Amado por la comunidad",
+      "title": "Lujo moderno con responsabilidad",
+      "description": "Nuestras colecciones equilibran un diseño elevado con producción consciente, para que expreses tu estilo y te sientas bien con cada prenda."
+    },
+    "items": {
+      "alisha": {
+        "quote": "Las piezas de Shopper YAS son la base de mi armario — la sastrería es impecable y totalmente combinable.",
+        "name": "Alisha R.",
+        "role": "Directora creativa"
+      },
+      "jordan": {
+        "quote": "La calidad es insuperable. Me encanta saber que cada pieza se elabora con cuidado por las personas y el planeta.",
+        "name": "Jordan M.",
+        "role": "Estilista"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "heading": "Mantente al día",
+      "description": "Recibe notas de estilo, acceso anticipado e invitaciones exclusivas."
+    },
+    "meta": {
+      "copy": "© {{year}} Shopper YAS. Todos los derechos reservados."
+    },
+    "links": {
+      "terms": "Términos",
+      "privacy": "Privacidad",
+      "email": "hello@shopperyas.com"
+    }
+  },
+  "newsletter": {
+    "label": "Correo electrónico",
+    "placeholder": "tu@ejemplo.com",
+    "submit": "Unirme a la lista"
+  }
+}

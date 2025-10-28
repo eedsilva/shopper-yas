@@ -1,0 +1,122 @@
+{
+  "navigation": {
+    "brand": "Shopper <highlight>YAS</highlight>",
+    "menu": {
+      "ariaLabel": "Navegação principal",
+      "links": {
+        "collections": "Coleções",
+        "new": "Novidades",
+        "stories": "Histórias",
+        "contact": "Contato"
+      }
+    },
+    "actions": {
+      "searchAria": "Abrir pesquisa",
+      "favoritesAria": "Ver favoritos",
+      "cta": "Conferir o lançamento",
+      "languageLabel": "Idioma",
+      "languageSelectAria": "Selecionar idioma",
+      "language": {
+        "en": "Inglês",
+        "ptBR": "Português (Brasil)",
+        "es": "Espanhol"
+      }
+    }
+  },
+  "hero": {
+    "eyebrow": "Nova temporada · Edição limitada",
+    "ctaPrimary": "Explorar coleção",
+    "ctaSecondary": "Assistir à história",
+    "controls": {
+      "groupAria": "Slides do destaque",
+      "previousAria": "Slide anterior",
+      "nextAria": "Próximo slide",
+      "showSlideAria": "Mostrar slide {{index}}"
+    },
+    "slides": {
+      "everyday": {
+        "title": "Conheça os Ícones do Dia a Dia",
+        "description": "Essenciais versáteis com materiais conscientes e silhuetas atemporais."
+      },
+      "summer": {
+        "title": "Coleção de Linho para o Verão",
+        "description": "Tramas leves, tons costeiros e alfaiataria que acompanha o seu ritmo."
+      },
+      "glamour": {
+        "title": "Glamour do Pós-Expediente",
+        "description": "De jantares ao entardecer a coberturas — brilhe com elegância sutil."
+      }
+    }
+  },
+  "highlights": {
+    "items": {
+      "mindful": {
+        "title": "Materiais Conscientes",
+        "description": "Algodão orgânico, fibras regenerativas e aviamentos reciclados feitos para durar."
+      },
+      "fair": {
+        "title": "Produção justa",
+        "description": "Parcerias com ateliês que priorizam ambientes de trabalho seguros e equitativos."
+      },
+      "circular": {
+        "title": "Futuro circular",
+        "description": "Serviços de reparo e mercado de revenda mantêm as peças em circulação."
+      }
+    }
+  },
+  "products": {
+    "section": {
+      "eyebrow": "Novidades",
+      "title": "Feito sob medida para a próxima temporada",
+      "cta": "Ver todos os produtos"
+    },
+    "error": {
+      "message": "Não foi possível atualizar as últimas novidades. {{message}}",
+      "retry": "Tentar novamente"
+    },
+    "empty": {
+      "message": "Estamos preparando o próximo lançamento. Volte em breve."
+    },
+    "tile": {
+      "addToBag": "Adicionar à sacola"
+    }
+  },
+  "testimonials": {
+    "intro": {
+      "eyebrow": "Querido pela comunidade",
+      "title": "Luxo moderno com responsabilidade",
+      "description": "Nossas coleções equilibram design sofisticado e produção consciente, para você expressar seu estilo e se sentir bem com cada peça."
+    },
+    "items": {
+      "alisha": {
+        "quote": "As peças da Shopper YAS são a base do meu guarda-roupa — a alfaiataria é impecável e infinitamente versátil.",
+        "name": "Alisha R.",
+        "role": "Diretora Criativa"
+      },
+      "jordan": {
+        "quote": "A qualidade é incomparável. Adoro saber que cada peça é feita com cuidado pelas pessoas e pelo planeta.",
+        "name": "Jordan M.",
+        "role": "Estilista"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "heading": "Fique por dentro",
+      "description": "Receba dicas de estilo, acesso antecipado e convites exclusivos."
+    },
+    "meta": {
+      "copy": "© {{year}} Shopper YAS. Todos os direitos reservados."
+    },
+    "links": {
+      "terms": "Termos",
+      "privacy": "Privacidade",
+      "email": "hello@shopperyas.com"
+    }
+  },
+  "newsletter": {
+    "label": "E-mail",
+    "placeholder": "voce@exemplo.com",
+    "submit": "Entrar na lista"
+  }
+}

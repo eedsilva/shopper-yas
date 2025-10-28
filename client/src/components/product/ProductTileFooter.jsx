@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 function ProductTileFooter({ price, variant }) {
+  const { t } = useTranslation();
+
   return (
     <div className="product-tile__footer">
       <span className="product-tile__price">{price}</span>
@@ -7,7 +11,7 @@ function ProductTileFooter({ price, variant }) {
         className="product-tile__button"
         data-variant={variant ?? "default"}
       >
-        Add to bag
+        {t("products.tile.addToBag")}
       </button>
     </div>
   );

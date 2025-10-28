@@ -1,15 +1,20 @@
+import { useTranslation } from "react-i18next";
+
 function HeroContent({ slide }) {
+  const { t } = useTranslation();
+  if (!slide) return null;
+
   return (
     <div className="hero__content">
-      <p className="hero__eyebrow">New Season · Limited Run</p>
-      <h1>{slide.title}</h1>
-      <p className="hero__description">{slide.description}</p>
+      <p className="hero__eyebrow">{t("hero.eyebrow")}</p>
+      <h1>{t(slide.titleKey)}</h1>
+      <p className="hero__description">{t(slide.descriptionKey)}</p>
       <div className="hero__cta-group">
         <button type="button" className="hero__cta hero__cta--primary">
-          Explore collection
+          {t("hero.ctaPrimary")}
         </button>
         <button type="button" className="hero__cta hero__cta--ghost">
-          Watch the story
+          {t("hero.ctaSecondary")}
         </button>
       </div>
     </div>

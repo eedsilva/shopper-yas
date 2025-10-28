@@ -1,12 +1,16 @@
-function TestimonialCard({ quote, name, role }) {
+import { useTranslation } from "react-i18next";
+
+function TestimonialCard({ quoteKey, nameKey, roleKey }) {
+  const { t } = useTranslation();
+
   return (
     <figure>
       <blockquote>
-        <p>“{quote}”</p>
+        <p>“{t(quoteKey)}”</p>
       </blockquote>
       <figcaption>
-        <span>{name}</span>
-        <span>{role}</span>
+        <span>{t(nameKey)}</span>
+        <span>{t(roleKey)}</span>
       </figcaption>
     </figure>
   );

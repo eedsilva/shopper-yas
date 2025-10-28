@@ -1,12 +1,15 @@
 import { clsx } from "clsx";
+import { useTranslation } from "react-i18next";
 
 function HeroControls({ slides, activeIndex, onSelect, onStep }) {
+  const { t } = useTranslation();
+
   return (
-    <div className="hero__controls" role="group" aria-label="Hero slides">
+    <div className="hero__controls" role="group" aria-label={t("hero.controls.groupAria")}>
       <button
         type="button"
         className="hero__control"
-        aria-label="Previous slide"
+        aria-label={t("hero.controls.previousAria")}
         onClick={() => onStep(-1)}
       >
         ←
@@ -19,7 +22,7 @@ function HeroControls({ slides, activeIndex, onSelect, onStep }) {
             className={clsx("hero__dot", {
               "hero__dot--active": index === activeIndex
             })}
-            aria-label={`Show slide ${index + 1}`}
+            aria-label={t("hero.controls.showSlideAria", { index: index + 1 })}
             aria-pressed={index === activeIndex}
             onClick={() => onSelect(index)}
           />
@@ -28,7 +31,7 @@ function HeroControls({ slides, activeIndex, onSelect, onStep }) {
       <button
         type="button"
         className="hero__control"
-        aria-label="Next slide"
+        aria-label={t("hero.controls.nextAria")}
         onClick={() => onStep(1)}
       >
         →

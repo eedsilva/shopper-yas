@@ -1,20 +1,20 @@
 export const highlights = [
   {
     id: 1,
-    title: "Mindful Materials",
-    description: "Organic cotton, regenerative fibers, and recycled trims crafted for longevity.",
+    titleKey: "highlights.items.mindful.title",
+    descriptionKey: "highlights.items.mindful.description",
     icon: "🌱"
   },
   {
     id: 2,
-    title: "Fairly Made",
-    description: "We partner with ateliers that champion safe, equitable working environments.",
+    titleKey: "highlights.items.fair.title",
+    descriptionKey: "highlights.items.fair.description",
     icon: "🤝"
   },
   {
     id: 3,
-    title: "Circular Future",
-    description: "Complimentary repair services and resale marketplace keep garments in rotation.",
+    titleKey: "highlights.items.circular.title",
+    descriptionKey: "highlights.items.circular.description",
     icon: "♻️"
   }
 ];

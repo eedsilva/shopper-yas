@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useProducts } from "../hooks/useProducts";
 import {
   ProductsEmptyState,
@@ -7,14 +8,15 @@ import {
 } from "./products";
 
 function ProductShowcase() {
+  const { t } = useTranslation();
   const { spotlight, showcase, isLoading, error, refetch, products } = useProducts();
 
   return (
     <section className="products" id="new-arrivals" aria-live="polite">
       <ProductsSectionHeader
-        eyebrow="New arrivals"
-        title="Tailored for the season ahead"
-        ctaLabel="View all products"
+        eyebrow={t("products.section.eyebrow")}
+        title={t("products.section.title")}
+        ctaLabel={t("products.section.cta")}
         onCtaClick={() => window.open("/collections", "_self")}
       />
 

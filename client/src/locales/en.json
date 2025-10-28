@@ -1,0 +1,122 @@
+{
+  "navigation": {
+    "brand": "Shopper <highlight>YAS</highlight>",
+    "menu": {
+      "ariaLabel": "Primary navigation",
+      "links": {
+        "collections": "Collections",
+        "new": "New",
+        "stories": "Stories",
+        "contact": "Contact"
+      }
+    },
+    "actions": {
+      "searchAria": "Open search",
+      "favoritesAria": "View favorites",
+      "cta": "Shop the drop",
+      "languageLabel": "Language",
+      "languageSelectAria": "Select language",
+      "language": {
+        "en": "English",
+        "ptBR": "Português (Brasil)",
+        "es": "Español"
+      }
+    }
+  },
+  "hero": {
+    "eyebrow": "New Season · Limited Run",
+    "ctaPrimary": "Explore collection",
+    "ctaSecondary": "Watch the story",
+    "controls": {
+      "groupAria": "Hero slides",
+      "previousAria": "Previous slide",
+      "nextAria": "Next slide",
+      "showSlideAria": "Show slide {{index}}"
+    },
+    "slides": {
+      "everyday": {
+        "title": "Meet the Everyday Icons",
+        "description": "Layerable essentials crafted with mindful materials and timeless silhouettes."
+      },
+      "summer": {
+        "title": "Summer Linen Capsule",
+        "description": "Airy weaves, coastal tones, and tailoring that moves wherever you do."
+      },
+      "glamour": {
+        "title": "After-Hours Glamour",
+        "description": "From twilight dinners to rooftop soirées — shimmer with subtle drama."
+      }
+    }
+  },
+  "highlights": {
+    "items": {
+      "mindful": {
+        "title": "Mindful Materials",
+        "description": "Organic cotton, regenerative fibers, and recycled trims crafted for longevity."
+      },
+      "fair": {
+        "title": "Fairly Made",
+        "description": "We partner with ateliers that champion safe, equitable working environments."
+      },
+      "circular": {
+        "title": "Circular Future",
+        "description": "Complimentary repair services and resale marketplace keep garments in rotation."
+      }
+    }
+  },
+  "products": {
+    "section": {
+      "eyebrow": "New arrivals",
+      "title": "Tailored for the season ahead",
+      "cta": "View all products"
+    },
+    "error": {
+      "message": "We couldn't refresh the latest arrivals. {{message}}",
+      "retry": "Try again"
+    },
+    "empty": {
+      "message": "We're curating the next release. Check back soon."
+    },
+    "tile": {
+      "addToBag": "Add to bag"
+    }
+  },
+  "testimonials": {
+    "intro": {
+      "eyebrow": "Loved by the community",
+      "title": "Modern luxury rooted in responsibility",
+      "description": "Our collections balance elevated design with mindful production, so you can express your personal style and feel good about every piece you wear."
+    },
+    "items": {
+      "alisha": {
+        "quote": "Shopper YAS pieces are the backbone of my wardrobe — the tailoring is impeccable and endlessly remixable.",
+        "name": "Alisha R.",
+        "role": "Creative Director"
+      },
+      "jordan": {
+        "quote": "The quality is unmatched. I love knowing every piece is crafted with care for both people and planet.",
+        "name": "Jordan M.",
+        "role": "Stylist"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "heading": "Stay in the loop",
+      "description": "Receive styling notes, early access, and exclusive invitations."
+    },
+    "meta": {
+      "copy": "© {{year}} Shopper YAS. All rights reserved."
+    },
+    "links": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "email": "hello@shopperyas.com"
+    }
+  },
+  "newsletter": {
+    "label": "Email",
+    "placeholder": "you@example.com",
+    "submit": "Join the list"
+  }
+}
