@@ -1,4 +1,4 @@
-import { FooterLinks, NewsletterForm } from "./footer";
+import { FooterLinks, NewsletterForm } from "./footer/index.ts";
 
 function Footer(): JSX.Element {
   const year = new Date().getFullYear();

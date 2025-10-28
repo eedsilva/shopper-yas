@@ -1,4 +1,4 @@
-import { TestimonialCard, testimonials } from "./testimonials";
+import { TestimonialCard, testimonials } from "./testimonials/index.ts";
 
 function Testimonials(): JSX.Element {
   return (

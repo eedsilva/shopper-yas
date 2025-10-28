@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
-import { NavigationActions, NavigationBrand, NavigationMenu } from "./navigation";
+import { NavigationActions, NavigationBrand, NavigationMenu } from "./navigation/index.ts";
 
 function Navigation(): JSX.Element {
   const [isScrolled, setIsScrolled] = useState(false);
