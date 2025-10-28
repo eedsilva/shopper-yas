@@ -9,6 +9,7 @@ import adminRoutes from "./routes/admin";
 import orderRoutes from "./routes/orders";
 import { logger } from "./lib/logger";
 import { errorHandler } from "./middleware/errorHandler";
+import { checkDatabaseHealth } from "./services/health";
 
 export function createApp(configureApp?: (app: Express) => void) {
   const app = express();
@@ -39,6 +40,15 @@ export function createApp(configureApp?: (app: Express) => void) {
   app.use(express.json());
 
   app.get("/", (_, res) => res.send("Shopper YAS API is running 🚀"));
+  app.get("/api/health", async (_req, res) => {
+    const database = await checkDatabaseHealth();
+    const statusCode = database.status === "ok" ? 200 : 503;
+
+    return res.status(statusCode).json({
+      api: { status: "ok" },
+      database,
+    });
+  });
   app.use("/api/products", productRoutes);
   app.use("/api/admin", adminRoutes);
   app.use("/api/orders", orderRoutes);
