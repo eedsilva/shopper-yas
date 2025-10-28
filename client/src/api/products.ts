@@ -14,6 +14,12 @@ interface RequestOptions {
   signal?: AbortSignal;
 }
 
+let adminAuthToken: string | null = null;
+
+export function setAuthToken(token: string | null): void {
+  adminAuthToken = token;
+}
+
 async function request<TResponse>(
   path: string,
   { method = "GET", body, signal }: RequestOptions = {}
@@ -22,12 +28,18 @@ async function request<TResponse>(
     throw new Error("request helper should not be used when mock data is enabled");
   }
 
+  const headers: Record<string, string> = {
+    Accept: "application/json",
+    ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
+  };
+
+  if (adminAuthToken) {
+    headers.Authorization = `Bearer ${adminAuthToken}`;
+  }
+
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,
-    headers: {
-      Accept: "application/json",
-      ...(body !== undefined ? { "Content-Type": "application/json" } : {})
-    },
+    headers,
     body: body !== undefined ? JSON.stringify(body) : undefined,
     signal
   });

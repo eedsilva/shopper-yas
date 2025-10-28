@@ -8,6 +8,7 @@ import {
   listProducts,
   updateProduct,
 } from "../services/productService";
+import requireAdmin from "../middleware/requireAdmin";
 import {
   productCreateSchema,
   productListQuerySchema,
@@ -72,7 +73,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", requireAdmin, async (req, res) => {
   const parseResult = productCreateSchema.safeParse(req.body);
   if (!parseResult.success) {
     return res.status(400).json({
@@ -90,7 +91,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params.id);
   if (Number.isNaN(id)) {
     return res.status(400).json({ message: "Invalid product id" });
@@ -116,7 +117,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params.id);
   if (Number.isNaN(id)) {
     return res.status(400).json({ message: "Invalid product id" });

@@ -2,9 +2,11 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import { ADMIN_ACCESS_CODE, USE_MOCK_DATA } from "../config";
 import * as adminApi from "../api/admin";
+import { setAuthToken } from "../api/products";
 
 interface AdminAuthContextValue {
   isAuthenticated: boolean;
+  token: string | null;
   login: (code: string) => Promise<boolean>;
   logout: () => void;
 }
@@ -13,6 +15,7 @@ const STORAGE_KEY = "shopperyas:admin-access";
 
 const AdminAuthContext = createContext<AdminAuthContextValue>({
   isAuthenticated: false,
+  token: null,
   login: async () => false,
   logout: () => undefined
 });
@@ -22,24 +25,41 @@ interface AdminAuthProviderProps {
 }
 
 export function AdminAuthProvider({ children }: AdminAuthProviderProps): JSX.Element {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+  const [token, setToken] = useState<string | null>(() => {
     if (typeof window === "undefined") {
-      return false;
+      return null;
     }
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return stored === "true";
+    if (!stored) {
+      return null;
+    }
+    if (stored === "true" || stored === "false") {
+      return null;
+    }
+    return stored;
   });
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
-    window.localStorage.setItem(STORAGE_KEY, isAuthenticated ? "true" : "false");
-  }, [isAuthenticated]);
+    if (token) {
+      window.localStorage.setItem(STORAGE_KEY, token);
+    } else {
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    setAuthToken(token);
+  }, [token]);
+
+  const isAuthenticated = Boolean(token);
 
   const value = useMemo<AdminAuthContextValue>(() => {
     return {
       isAuthenticated,
+      token,
       login: async (code: string) => {
         const normalized = code.trim();
         if (!normalized) {
@@ -48,26 +68,33 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps): JSX.Ele
 
         if (USE_MOCK_DATA) {
           if (normalized === ADMIN_ACCESS_CODE) {
-            setIsAuthenticated(true);
+            const mockToken = "mock-admin-token";
+            setToken(mockToken);
+            setAuthToken(mockToken);
             return true;
           }
           return false;
         }
 
         try {
-          const success = await adminApi.login(normalized);
-          if (success) {
-            setIsAuthenticated(true);
+          const authToken = await adminApi.login(normalized);
+          if (authToken) {
+            setToken(authToken);
+            setAuthToken(authToken);
+            return true;
           }
-          return success;
+          return false;
         } catch (error) {
           console.error("Failed to authenticate admin", error);
           throw error;
         }
       },
-      logout: () => setIsAuthenticated(false)
+      logout: () => {
+        setToken(null);
+        setAuthToken(null);
+      }
     };
-  }, [isAuthenticated]);
+  }, [isAuthenticated, token]);
 
   return <AdminAuthContext.Provider value={value}>{children}</AdminAuthContext.Provider>;
 }
