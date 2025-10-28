@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useCart } from "../contexts/CartContext";
 import { useMessages } from "../contexts/LocalizationContext";
@@ -15,6 +16,7 @@ import {
 const ALL_CATEGORIES = "__all__";
 
 function ProductShowcase(): JSX.Element {
+  const navigate = useNavigate();
   const { products, isLoading, error, refetch } = useProducts();
   const { addToCart } = useCart();
   const messages = useMessages();
@@ -65,7 +67,7 @@ function ProductShowcase(): JSX.Element {
         eyebrow={productMessages.sectionEyebrow}
         title={productMessages.sectionTitle}
         ctaLabel={productMessages.sectionCta}
-        onCtaClick={() => window.open("/collections", "_self")}
+        onCtaClick={() => navigate("/collections")}
       />
 
       <div className="products__toolbar" role="search">

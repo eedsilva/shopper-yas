@@ -8,6 +8,7 @@ import App from "./App";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import Checkout from "./pages/Checkout";
+import Collections from "./pages/Collections";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { LocalizationProvider } from "./contexts/LocalizationContext";
@@ -29,6 +30,7 @@ ReactDOM.createRoot(rootElement).render(
               <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/collections" element={<Collections />} />
                 <Route element={<ProtectedAdminRoute />}>
                   <Route path="/admin" element={<AdminDashboard />} />
                 </Route>
