@@ -8,15 +8,24 @@ import {
   fetchProducts,
   updateProduct
 } from "../api/products";
+import { fetchOrderSummary, fetchOrders } from "../api/orders";
 import {
   InventoryTable,
   KpiGrid,
   ProductFormDrawer,
-  SalesChart
+  SalesChart,
+  OrderTable
 } from "../components/admin";
 import { useAdminAuth } from "../contexts/AdminAuthContext";
 import { useMessages } from "../contexts/LocalizationContext";
-import type { CategoryBreakdown, InventorySummary, Product, ProductDraft } from "../types";
+import type {
+  CategoryBreakdown,
+  InventorySummary,
+  Order,
+  OrderSummary,
+  Product,
+  ProductDraft
+} from "../types";
 
 interface DrawerStateClosed {
   open: false;
@@ -64,6 +73,8 @@ function AdminDashboard(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
   const [summary, setSummary] = useState<InventorySummary | null>(null);
   const [categories, setCategories] = useState<CategoryBreakdown[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [orderSummary, setOrderSummary] = useState<OrderSummary | null>(null);
   const [drawerState, setDrawerState] = useState<DrawerState>({ open: false });
   const [toast, setToast] = useState<ToastState | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "error">("loading");
@@ -87,6 +98,21 @@ function AdminDashboard(): JSX.Element {
         setCategories(categoryData);
         setError(null);
         setStatus("idle");
+
+        try {
+          const [orderList, orderMetrics] = await Promise.all([fetchOrders(), fetchOrderSummary()]);
+          if (cancelled) {
+            return;
+          }
+          setOrders(orderList);
+          setOrderSummary(orderMetrics);
+        } catch (orderError) {
+          console.warn("Failed to load order data", orderError);
+          if (!cancelled) {
+            setOrders([]);
+            setOrderSummary(null);
+          }
+        }
       } catch (err) {
         if (cancelled) {
           return;
@@ -122,6 +148,13 @@ function AdminDashboard(): JSX.Element {
       ]);
       setSummary(summaryData);
       setCategories(categoryData);
+      try {
+        const [orderList, orderMetrics] = await Promise.all([fetchOrders(), fetchOrderSummary()]);
+        setOrders(orderList);
+        setOrderSummary(orderMetrics);
+      } catch (orderError) {
+        console.warn("Failed to refresh orders", orderError);
+      }
     } catch (err) {
       console.error("Failed to refresh metrics", err);
     }
@@ -274,8 +307,9 @@ function AdminDashboard(): JSX.Element {
         </p>
       ) : null}
 
-      <KpiGrid summary={summary} />
+      <KpiGrid summary={summary} orderSummary={orderSummary} />
       <InventoryTable products={products} onEdit={openEditDrawer} onDelete={handleDeleteProduct} />
+      <OrderTable orders={orders} />
       <SalesChart categories={categories} />
 
       <ProductFormDrawer

@@ -23,13 +23,14 @@ Brazilian-inspired e-commerce experience for beauty, skincare, and fashion produ
 - **Home page hero & featured categories**: Moda, Skincare, Maquiagem, Perfumes, and Roupas highlighted for quick discovery.
 - **Product catalog**: filter by category, sort by price, and browse a responsive grid with large imagery.
 - **Product detail drawer**: rich description, price formatting for BRL, and one-click “Adicionar ao carrinho.”
-- **Cart & checkout**: quantity controls, subtotal calculation, and delivery options for Correios, Motorista Parceiro, or in-store pickup.
-- **Pix simulation**: confirm purchases with a mock Pix payment flow and order success page.
+- **Dedicated checkout**: review the order, choose delivery (Correios, Motorista Parceiro, retirada), and generate a Pix code before confirming payment.
+- **Pix simulation**: confirm purchases with a mock Pix payment flow and success state that clears the cart.
 
 ### Admin Experience
 - **Dashboard overview**: switch between Products and Orders to manage the store at a glance.
 - **Inventory management**: update stock levels in real time and add new products with price, stock, and imagery.
-- **Order management**: review customers, totals, delivery method, and fulfillment status.
+- **Order management**: review customers, totals, delivery method, and fulfillment status, plus Pix confirmation status.
+- **Live analytics**: combined product + order KPIs and recent order feed for instant Pix tracking.
 
 ## Tech Stack
 | Layer | Technology | Notes |

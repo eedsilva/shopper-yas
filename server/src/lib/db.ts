@@ -32,10 +32,37 @@ export interface ProductTagTable {
   assignedAt: Timestamp;
 }
 
+export interface OrderTable {
+  id: Generated<number>;
+  customerName: string;
+  customerEmail: string;
+  deliveryMethod: string;
+  subtotal: number;
+  deliveryFee: number;
+  total: number;
+  status: string;
+  pixCode: string;
+  notes: string | null;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+export interface OrderItemTable {
+  id: Generated<number>;
+  orderId: number;
+  productId: number;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  createdAt: Timestamp;
+}
+
 export interface DatabaseSchema {
   Product: ProductTable;
   Tag: TagTable;
   ProductTag: ProductTagTable;
+  Order: OrderTable;
+  OrderItem: OrderItemTable;
 }
 
 export function resolveSqlitePath(url: string): string {
@@ -68,3 +95,5 @@ export const db = new Kysely<DatabaseSchema>({
 
 export type ProductRow = Selectable<ProductTable>;
 export type TagRow = Selectable<TagTable>;
+export type OrderRow = Selectable<OrderTable>;
+export type OrderItemRow = Selectable<OrderItemTable>;

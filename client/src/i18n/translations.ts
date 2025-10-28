@@ -1,4 +1,4 @@
-import type { HeroSlide, Highlight, Testimonial } from "../types";
+import type { DeliveryMethod, HeroSlide, Highlight, Testimonial } from "../types";
 
 export type Locale = "en" | "pt-BR" | "es";
 
@@ -60,6 +60,50 @@ export interface AppMessages {
     increase: string;
     decrease: string;
   };
+  checkout: {
+    title: string;
+    subtitle: string;
+    delivery: {
+      title: string;
+      options: ReadonlyArray<{
+        value: DeliveryMethod;
+        label: string;
+        description: string;
+        fee: number;
+      }>;
+    };
+    customer: {
+      title: string;
+      name: string;
+      namePlaceholder: string;
+      email: string;
+      emailPlaceholder: string;
+      notes: string;
+      notesPlaceholder: string;
+    };
+    summary: {
+      title: string;
+      subtotal: string;
+      delivery: string;
+      total: string;
+      quantityLabel: (quantity: number) => string;
+    };
+    pix: {
+      title: string;
+      instructions: string;
+      confirmCta: string;
+    };
+    actions: {
+      generatePix: string;
+      processing: string;
+      confirming: string;
+    };
+    success: {
+      title: string;
+      description: string;
+      backHome: string;
+    };
+  };
   testimonials: {
     eyebrow: string;
     title: string;
@@ -103,6 +147,10 @@ export interface AppMessages {
       inventoryValue: string;
       salesRevenue: string;
       potentialRevenue: string;
+      totalOrders: string;
+      pendingOrders: string;
+      paidOrders: string;
+      averageOrderValue: string;
       placeholders: ReadonlyArray<{ label: string; value: string }>;
     };
     inventory: {
@@ -126,6 +174,23 @@ export interface AppMessages {
       title: string;
       subtitle: string;
       empty: string;
+    };
+    orders: {
+      title: string;
+      subtitle: string;
+      empty: string;
+      columns: {
+        id: string;
+        customer: string;
+        total: string;
+        delivery: string;
+        status: string;
+        createdAt: string;
+      };
+      statuses: {
+        pending: string;
+        paid: string;
+      };
     };
     form: {
       createTitle: string;
@@ -299,6 +364,69 @@ export const translations: Record<Locale, AppMessages> = {
       increase: "Increase quantity",
       decrease: "Decrease quantity"
     },
+    checkout: {
+      title: "Secure checkout",
+      subtitle: "Pix-powered payments in seconds",
+      delivery: {
+        title: "Delivery method",
+        options: [
+          {
+            value: "correios",
+            label: "Correios",
+            description: "3-5 business days across Brazil",
+            fee: 20
+          },
+          {
+            value: "partner",
+            label: "Motorista Parceiro",
+            description: "Same-day courier in major cities",
+            fee: 35
+          },
+          {
+            value: "pickup",
+            label: "Retirada em loja",
+            description: "Pick up in-store at no cost",
+            fee: 0
+          }
+        ] satisfies ReadonlyArray<{
+          value: DeliveryMethod;
+          label: string;
+          description: string;
+          fee: number;
+        }>
+      },
+      customer: {
+        title: "Contact details",
+        name: "Full name",
+        namePlaceholder: "Maria Silva",
+        email: "Email",
+        emailPlaceholder: "maria@email.com",
+        notes: "Notes",
+        notesPlaceholder: "Apartment, concierge, preferred contact time…"
+      },
+      summary: {
+        title: "Order summary",
+        subtotal: "Subtotal",
+        delivery: "Delivery",
+        total: "Total due",
+        quantityLabel: (quantity: number) => `${quantity}×`
+      },
+      pix: {
+        title: "Pix confirmation",
+        instructions: "Scan or copy the Pix code below to finalize your purchase.",
+        confirmCta: "Mark Pix as paid"
+      },
+      actions: {
+        generatePix: "Generate Pix code",
+        processing: "Generating Pix…",
+        confirming: "Confirming Pix…"
+      },
+      success: {
+        title: "Order confirmed!",
+        description: "We've received your Pix and are preparing your shipment.",
+        backHome: "Back to the storefront"
+      }
+    },
     testimonials: {
       eyebrow: "Loved by the community",
       title: "Modern luxury rooted in responsibility",
@@ -359,13 +487,21 @@ export const translations: Record<Locale, AppMessages> = {
         inventoryValue: "Inventory value",
         salesRevenue: "Sales to date",
         potentialRevenue: "Potential revenue",
+        totalOrders: "Orders",
+        pendingOrders: "Pending Pix",
+        paidOrders: "Paid orders",
+        averageOrderValue: "Average order value",
         placeholders: [
           { label: "Active styles", value: "—" },
           { label: "Units on hand", value: "—" },
           { label: "Units sold", value: "—" },
           { label: "Inventory value", value: "—" },
           { label: "Sales to date", value: "—" },
-          { label: "Potential revenue", value: "—" }
+          { label: "Potential revenue", value: "—" },
+          { label: "Orders", value: "—" },
+          { label: "Pending Pix", value: "—" },
+          { label: "Paid orders", value: "—" },
+          { label: "Average order value", value: "—" }
         ]
       },
       inventory: {
@@ -389,6 +525,23 @@ export const translations: Record<Locale, AppMessages> = {
         title: "Revenue by category",
         subtitle: "Compare momentum across the assortment.",
         empty: "No category performance data yet."
+      },
+      orders: {
+        title: "Latest orders",
+        subtitle: "Monitor Pix confirmations and fulfillment steps.",
+        empty: "Orders will appear here after checkout is complete.",
+        columns: {
+          id: "Order",
+          customer: "Customer",
+          total: "Total",
+          delivery: "Delivery",
+          status: "Status",
+          createdAt: "Placed"
+        },
+        statuses: {
+          pending: "Awaiting Pix",
+          paid: "Paid"
+        }
       },
       form: {
         createTitle: "Create product",
@@ -534,6 +687,69 @@ export const translations: Record<Locale, AppMessages> = {
       increase: "Aumentar quantidade",
       decrease: "Diminuir quantidade"
     },
+    checkout: {
+      title: "Finalizar pedido",
+      subtitle: "Confirme o envio e gere seu Pix",
+      delivery: {
+        title: "Entrega",
+        options: [
+          {
+            value: "correios",
+            label: "Correios",
+            description: "3 a 5 dias úteis para todo o Brasil",
+            fee: 20
+          },
+          {
+            value: "partner",
+            label: "Motorista Parceiro",
+            description: "Entrega no mesmo dia nas capitais",
+            fee: 35
+          },
+          {
+            value: "pickup",
+            label: "Retirada em loja",
+            description: "Retire sem custo na flagship",
+            fee: 0
+          }
+        ] satisfies ReadonlyArray<{
+          value: DeliveryMethod;
+          label: string;
+          description: string;
+          fee: number;
+        }>
+      },
+      customer: {
+        title: "Dados de contato",
+        name: "Nome completo",
+        namePlaceholder: "Maria Silva",
+        email: "E-mail",
+        emailPlaceholder: "maria@email.com",
+        notes: "Observações",
+        notesPlaceholder: "Apartamento, portaria, melhor horário…"
+      },
+      summary: {
+        title: "Resumo do pedido",
+        subtotal: "Subtotal",
+        delivery: "Entrega",
+        total: "Total",
+        quantityLabel: (quantity: number) => `${quantity}×`
+      },
+      pix: {
+        title: "Pagamento via Pix",
+        instructions: "Escaneie ou copie o código Pix para finalizar a compra.",
+        confirmCta: "Confirmar Pix"
+      },
+      actions: {
+        generatePix: "Gerar código Pix",
+        processing: "Gerando Pix…",
+        confirming: "Confirmando Pix…"
+      },
+      success: {
+        title: "Pedido confirmado!",
+        description: "Recebemos seu Pix e já estamos preparando o envio.",
+        backHome: "Voltar para a vitrine"
+      }
+    },
     testimonials: {
       eyebrow: "Queridinho da comunidade",
       title: "Luxo moderno com responsabilidade",
@@ -594,13 +810,21 @@ export const translations: Record<Locale, AppMessages> = {
         inventoryValue: "Valor de estoque",
         salesRevenue: "Receita realizada",
         potentialRevenue: "Receita potencial",
+        totalOrders: "Pedidos",
+        pendingOrders: "Pix pendentes",
+        paidOrders: "Pedidos pagos",
+        averageOrderValue: "Ticket médio",
         placeholders: [
           { label: "Estilos ativos", value: "—" },
           { label: "Unidades em estoque", value: "—" },
           { label: "Unidades vendidas", value: "—" },
           { label: "Valor de estoque", value: "—" },
           { label: "Receita realizada", value: "—" },
-          { label: "Receita potencial", value: "—" }
+          { label: "Receita potencial", value: "—" },
+          { label: "Pedidos", value: "—" },
+          { label: "Pix pendentes", value: "—" },
+          { label: "Pedidos pagos", value: "—" },
+          { label: "Ticket médio", value: "—" }
         ]
       },
       inventory: {
@@ -624,6 +848,23 @@ export const translations: Record<Locale, AppMessages> = {
         title: "Receita por categoria",
         subtitle: "Compare o ritmo de cada linha.",
         empty: "Ainda não há dados de categoria."
+      },
+      orders: {
+        title: "Pedidos recentes",
+        subtitle: "Acompanhe confirmações Pix e envio.",
+        empty: "Os pedidos aparecerão aqui após a finalização da compra.",
+        columns: {
+          id: "Pedido",
+          customer: "Cliente",
+          total: "Total",
+          delivery: "Entrega",
+          status: "Status",
+          createdAt: "Data"
+        },
+        statuses: {
+          pending: "Aguardando Pix",
+          paid: "Pago"
+        }
       },
       form: {
         createTitle: "Criar produto",
@@ -769,6 +1010,69 @@ export const translations: Record<Locale, AppMessages> = {
       increase: "Aumentar cantidad",
       decrease: "Disminuir cantidad"
     },
+    checkout: {
+      title: "Finalizar pedido",
+      subtitle: "Elige la entrega y genera tu Pix",
+      delivery: {
+        title: "Entrega",
+        options: [
+          {
+            value: "correios",
+            label: "Correios",
+            description: "3 a 5 días hábiles en Brasil",
+            fee: 20
+          },
+          {
+            value: "partner",
+            label: "Conductor aliado",
+            description: "Entrega en el mismo día en capitales",
+            fee: 35
+          },
+          {
+            value: "pickup",
+            label: "Retiro en tienda",
+            description: "Retira sin costo en nuestra flagship",
+            fee: 0
+          }
+        ] satisfies ReadonlyArray<{
+          value: DeliveryMethod;
+          label: string;
+          description: string;
+          fee: number;
+        }>
+      },
+      customer: {
+        title: "Datos de contacto",
+        name: "Nombre completo",
+        namePlaceholder: "María Silva",
+        email: "Correo",
+        emailPlaceholder: "maria@email.com",
+        notes: "Notas",
+        notesPlaceholder: "Departamento, portería, mejor horario…"
+      },
+      summary: {
+        title: "Resumen de la orden",
+        subtotal: "Subtotal",
+        delivery: "Entrega",
+        total: "Total",
+        quantityLabel: (quantity: number) => `${quantity}×`
+      },
+      pix: {
+        title: "Confirmación Pix",
+        instructions: "Escanea o copia el código Pix para completar la compra.",
+        confirmCta: "Marcar Pix como pagado"
+      },
+      actions: {
+        generatePix: "Generar código Pix",
+        processing: "Generando Pix…",
+        confirming: "Confirmando Pix…"
+      },
+      success: {
+        title: "¡Pedido confirmado!",
+        description: "Recibimos tu Pix y ya preparamos el envío.",
+        backHome: "Volver a la tienda"
+      }
+    },
     testimonials: {
       eyebrow: "Amado por la comunidad",
       title: "Lujo moderno con responsabilidad",
@@ -829,13 +1133,21 @@ export const translations: Record<Locale, AppMessages> = {
         inventoryValue: "Valor de inventario",
         salesRevenue: "Ingresos realizados",
         potentialRevenue: "Ingresos potenciales",
+        totalOrders: "Pedidos",
+        pendingOrders: "Pix pendientes",
+        paidOrders: "Pedidos pagados",
+        averageOrderValue: "Ticket promedio",
         placeholders: [
           { label: "Estilos activos", value: "—" },
           { label: "Unidades en inventario", value: "—" },
           { label: "Unidades vendidas", value: "—" },
           { label: "Valor de inventario", value: "—" },
           { label: "Ingresos realizados", value: "—" },
-          { label: "Ingresos potenciales", value: "—" }
+          { label: "Ingresos potenciales", value: "—" },
+          { label: "Pedidos", value: "—" },
+          { label: "Pix pendientes", value: "—" },
+          { label: "Pedidos pagados", value: "—" },
+          { label: "Ticket promedio", value: "—" }
         ]
       },
       inventory: {
@@ -859,6 +1171,23 @@ export const translations: Record<Locale, AppMessages> = {
         title: "Ingresos por categoría",
         subtitle: "Compara el ritmo de cada línea.",
         empty: "Aún no hay datos por categoría."
+      },
+      orders: {
+        title: "Pedidos recientes",
+        subtitle: "Supervisa confirmaciones Pix y envíos.",
+        empty: "Los pedidos aparecerán aquí después del checkout.",
+        columns: {
+          id: "Pedido",
+          customer: "Cliente",
+          total: "Total",
+          delivery: "Entrega",
+          status: "Estado",
+          createdAt: "Fecha"
+        },
+        statuses: {
+          pending: "Pix pendiente",
+          paid: "Pagado"
+        }
       },
       form: {
         createTitle: "Crear producto",

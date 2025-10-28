@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import productRoutes from "./routes/products";
 import adminRoutes from "./routes/admin";
+import orderRoutes from "./routes/orders";
 
 export function createApp() {
   const app = express();
@@ -12,6 +13,7 @@ export function createApp() {
   app.get("/", (_, res) => res.send("Shopper YAS API is running 🚀"));
   app.use("/api/products", productRoutes);
   app.use("/api/admin", adminRoutes);
+  app.use("/api/orders", orderRoutes);
 
   return app;
 }
