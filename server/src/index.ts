@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./config/loadEnv";
 import express from "express";
 import cors from "cors";
 import productRoutes from "./routes/products";

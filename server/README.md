@@ -4,7 +4,9 @@ This server exposes RESTful product and analytics endpoints backed by a SQLite d
 
 ## Environment variables
 
-Create a `.env` file in `server/` (or copy `.env.example`) with the following variables:
+Environment variables can be managed from the repository root. Copy `.env.example` to `.env` and the server will load it automatically, even when commands are executed from the workspace directory.
+
+Create or update the following variables:
 
 | Name | Description |
 | --- | --- |
