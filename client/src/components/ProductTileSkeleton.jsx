@@ -7,6 +7,14 @@ function ProductTileSkeleton() {
         <div className="skeleton skeleton--title" />
         <div className="skeleton skeleton--text" />
         <div className="skeleton skeleton--text" />
+        <ul className="product-tile__tags">
+          <li>
+            <div className="skeleton skeleton--tag" />
+          </li>
+          <li>
+            <div className="skeleton skeleton--tag" />
+          </li>
+        </ul>
         <div className="product-tile__footer">
           <div className="skeleton skeleton--price" />
           <div className="skeleton skeleton--button" />
