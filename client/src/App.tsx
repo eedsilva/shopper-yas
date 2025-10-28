@@ -1,3 +1,4 @@
+import CartDrawer from "./components/cart/CartDrawer";
 import FeatureHighlights from "./components/FeatureHighlights";
 import Footer from "./components/Footer";
 import HeroCarousel from "./components/HeroCarousel";
@@ -16,6 +17,7 @@ function App(): JSX.Element {
         <Testimonials />
       </main>
       <Footer />
+      <CartDrawer />
     </div>
   );
 }

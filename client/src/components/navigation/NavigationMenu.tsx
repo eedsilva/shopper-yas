@@ -1,16 +1,9 @@
-type NavLink = {
-  href: string;
-  label: string;
-};
-
-const navLinks: ReadonlyArray<NavLink> = [
-  { href: "#collections", label: "Collections" },
-  { href: "#new-arrivals", label: "New" },
-  { href: "#stories", label: "Stories" },
-  { href: "#contact", label: "Contact" }
-];
+import { useMessages } from "../../contexts/LocalizationContext";
 
 function NavigationMenu(): JSX.Element {
+  const { navigation } = useMessages();
+  const navLinks = navigation.menu;
+
   return (
     <nav className="navigation__menu" aria-label="Primary">
       <ul>

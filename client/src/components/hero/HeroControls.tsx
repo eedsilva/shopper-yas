@@ -7,15 +7,21 @@ interface HeroControlsProps {
   activeIndex: number;
   onSelect: (index: number) => void;
   onStep: (step: number) => void;
+  labels: {
+    previous: string;
+    next: string;
+    goToSlide: (index: number) => string;
+    groupLabel: string;
+  };
 }
 
-function HeroControls({ slides, activeIndex, onSelect, onStep }: HeroControlsProps): JSX.Element {
+function HeroControls({ slides, activeIndex, onSelect, onStep, labels }: HeroControlsProps): JSX.Element {
   return (
-    <div className="hero__controls" role="group" aria-label="Hero slides">
+    <div className="hero__controls" role="group" aria-label={labels.groupLabel}>
       <button
         type="button"
         className="hero__control"
-        aria-label="Previous slide"
+        aria-label={labels.previous}
         onClick={() => onStep(-1)}
       >
         ←
@@ -28,7 +34,7 @@ function HeroControls({ slides, activeIndex, onSelect, onStep }: HeroControlsPro
             className={clsx("hero__dot", {
               "hero__dot--active": index === activeIndex
             })}
-            aria-label={`Show slide ${index + 1}`}
+            aria-label={labels.goToSlide(index + 1)}
             aria-pressed={index === activeIndex}
             onClick={() => onSelect(index)}
           />
@@ -37,7 +43,7 @@ function HeroControls({ slides, activeIndex, onSelect, onStep }: HeroControlsPro
       <button
         type="button"
         className="hero__control"
-        aria-label="Next slide"
+        aria-label={labels.next}
         onClick={() => onStep(1)}
       >
         →

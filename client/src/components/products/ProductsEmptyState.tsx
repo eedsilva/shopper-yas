@@ -1,15 +1,16 @@
 interface ProductsEmptyStateProps {
   visible: boolean;
+  message: string;
 }
 
-function ProductsEmptyState({ visible }: ProductsEmptyStateProps): JSX.Element | null {
+function ProductsEmptyState({ visible, message }: ProductsEmptyStateProps): JSX.Element | null {
   if (!visible) {
     return null;
   }
 
   return (
     <div className="products__empty" role="status">
-      <p>We're curating the next release. Check back soon.</p>
+      <p>{message}</p>
     </div>
   );
 }
