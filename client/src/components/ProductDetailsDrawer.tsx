@@ -41,6 +41,9 @@ function ProductDetailsDrawer({ product, onClose, onAddToCart, messages }: Produ
   }
 
   const price = formatCurrency(product.price ?? 0);
+  const fallbackImage =
+    "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80";
+  const image = product.image ?? fallbackImage;
 
   return (
     <div className="product-details" role="dialog" aria-modal="true" aria-labelledby="product-details-title">
@@ -50,7 +53,7 @@ function ProductDetailsDrawer({ product, onClose, onAddToCart, messages }: Produ
           ×
         </button>
         <div className="product-details__media">
-          <img src={product.image} alt={product.name} loading="lazy" />
+          <img src={image} alt={product.name} loading="lazy" />
         </div>
         <div className="product-details__content">
           <p className="product-details__eyebrow">{messages.title}</p>
@@ -62,7 +65,7 @@ function ProductDetailsDrawer({ product, onClose, onAddToCart, messages }: Produ
               <dt>{messages.category}</dt>
               <dd>{product.category}</dd>
             </div>
-            {product.tags?.length ? (
+            {product.tags.length ? (
               <div>
                 <dt>{messages.tags}</dt>
                 <dd>

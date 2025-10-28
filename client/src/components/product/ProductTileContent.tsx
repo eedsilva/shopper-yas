@@ -15,7 +15,7 @@ function ProductTileContent({ product, price, variant, onAddToCart, addLabel }: 
       <p className="product-tile__category">{product.category}</p>
       <h3>{product.name}</h3>
       <p className="product-tile__description">{product.description}</p>
-      {product.tags?.length ? (
+      {product.tags.length ? (
         <ul className="product-tile__tags">
           {product.tags.map((tag) => (
             <li key={tag}>{tag}</li>
