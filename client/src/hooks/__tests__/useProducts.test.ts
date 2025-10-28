@@ -12,7 +12,12 @@ const mockProducts: Product[] = [
     price: 100,
     category: "Mock Category",
     image: "https://example.com/image.jpg",
-    tags: ["featured", "new"]
+    tags: ["featured", "new"],
+    stock: 10,
+    sold: 5,
+    cost: 40,
+    createdAt: "2024-01-01T00:00:00.000Z",
+    updatedAt: "2024-01-02T00:00:00.000Z"
   },
   {
     id: 2,
@@ -21,7 +26,12 @@ const mockProducts: Product[] = [
     price: 200,
     category: "Another Category",
     image: "https://example.com/other.jpg",
-    tags: ["classic"]
+    tags: ["classic"],
+    stock: 8,
+    sold: 2,
+    cost: 60,
+    createdAt: "2024-01-03T00:00:00.000Z",
+    updatedAt: "2024-01-04T00:00:00.000Z"
   }
 ];
 
@@ -48,6 +58,7 @@ describe("useProducts", () => {
     expect(fetchMock).toHaveBeenCalledWith(
       "http://localhost:4000/api/products",
       expect.objectContaining({
+        method: "GET",
         headers: { Accept: "application/json" },
         signal: expect.any(Object)
       })

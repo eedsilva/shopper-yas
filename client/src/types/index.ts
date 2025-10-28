@@ -4,8 +4,44 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  image: string;
-  tags?: string[];
+  image: string | null;
+  tags: string[];
+  stock: number;
+  sold: number;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProductDraft {
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string | null;
+  tags: string[];
+  stock: number;
+  sold: number;
+  cost: number;
+}
+
+export type ProductUpdatePayload = Partial<ProductDraft> & { tags?: string[] };
+
+export interface InventorySummary {
+  totalProducts: number;
+  totalStock: number;
+  totalSold: number;
+  inventoryValue: number;
+  salesRevenue: number;
+  potentialRevenue: number;
+}
+
+export interface CategoryBreakdown {
+  category: string;
+  stock: number;
+  sold: number;
+  inventoryValue: number;
+  salesRevenue: number;
 }
 
 export type ProductTileVariant = "spotlight" | "default";

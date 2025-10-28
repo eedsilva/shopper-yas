@@ -10,6 +10,7 @@ export interface AppMessages {
       openCart: string;
       cartWithCount: (count: number) => string;
       language: string;
+      admin: string;
     };
   };
   hero: {
@@ -75,6 +76,95 @@ export interface AppMessages {
     privacy: string;
     contactEmail: string;
   };
+  admin: {
+    gate: {
+      title: string;
+      subtitle: string;
+      label: string;
+      placeholder: string;
+      submit: string;
+      error: string;
+    };
+    intro: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      primaryCta: string;
+      logout: string;
+      loading: string;
+      error: string;
+    };
+    metrics: {
+      title: string;
+      subtitle: string;
+      totalProducts: string;
+      totalStock: string;
+      totalSold: string;
+      inventoryValue: string;
+      salesRevenue: string;
+      potentialRevenue: string;
+      placeholders: ReadonlyArray<{ label: string; value: string }>;
+    };
+    inventory: {
+      title: string;
+      subtitle: string;
+      empty: string;
+      columns: {
+        name: string;
+        category: string;
+        stock: string;
+        sold: string;
+        price: string;
+        actions: string;
+      };
+      actions: {
+        edit: string;
+        delete: string;
+      };
+    };
+    sales: {
+      title: string;
+      subtitle: string;
+      empty: string;
+    };
+    form: {
+      createTitle: string;
+      editTitle: string;
+      description: string;
+      cancel: string;
+      createCta: string;
+      saveCta: string;
+      fields: {
+        name: string;
+        category: string;
+        price: string;
+        cost: string;
+        stock: string;
+        sold: string;
+        description: string;
+        image: string;
+        tags: string;
+        tagsPlaceholder: string;
+      };
+      validation: {
+        name: string;
+        category: string;
+        price: string;
+        stock: string;
+        sold: string;
+        cost: string;
+      };
+    };
+    notifications: {
+      createSuccess: (name: string) => string;
+      createError: string;
+      updateSuccess: (name: string) => string;
+      updateError: string;
+      deleteSuccess: (name: string) => string;
+      deleteError: string;
+      confirmDelete: (name: string) => string;
+    };
+  };
 }
 
 const sharedSlides: Pick<HeroSlide, "id" | "image">[] = [
@@ -116,7 +206,8 @@ export const translations: Record<Locale, AppMessages> = {
         cartCta: "Shop the drop",
         openCart: "View cart",
         cartWithCount: (count: number) => `${count} items in cart`,
-        language: "Language"
+        language: "Language",
+        admin: "Open admin console"
       }
     },
     hero: {
@@ -240,6 +331,102 @@ export const translations: Record<Locale, AppMessages> = {
       terms: "Terms",
       privacy: "Privacy",
       contactEmail: "hello@shopperyas.com"
+    },
+    admin: {
+      gate: {
+        title: "Team access",
+        subtitle: "Enter the studio access code to continue.",
+        label: "Access code",
+        placeholder: "••••••",
+        submit: "Unlock",
+        error: "That code didn't work. Please try again."
+      },
+      intro: {
+        eyebrow: "Operations",
+        title: "Merchandising control center",
+        subtitle: "Monitor momentum, adjust assortment, and keep every launch in sync.",
+        primaryCta: "New product",
+        logout: "Sign out",
+        loading: "Loading the latest metrics…",
+        error: "We couldn't load the dashboard data."
+      },
+      metrics: {
+        title: "Performance snapshot",
+        subtitle: "Live indicators covering sell-through, inventory, and revenue outlook.",
+        totalProducts: "Active styles",
+        totalStock: "Units on hand",
+        totalSold: "Units sold",
+        inventoryValue: "Inventory value",
+        salesRevenue: "Sales to date",
+        potentialRevenue: "Potential revenue",
+        placeholders: [
+          { label: "Active styles", value: "—" },
+          { label: "Units on hand", value: "—" },
+          { label: "Units sold", value: "—" },
+          { label: "Inventory value", value: "—" },
+          { label: "Sales to date", value: "—" },
+          { label: "Potential revenue", value: "—" }
+        ]
+      },
+      inventory: {
+        title: "Catalog overview",
+        subtitle: "Track availability and fine-tune the mix in real time.",
+        empty: "Add your first product to populate the catalog.",
+        columns: {
+          name: "Name",
+          category: "Category",
+          stock: "Stock",
+          sold: "Sold",
+          price: "Price",
+          actions: "Actions"
+        },
+        actions: {
+          edit: "Edit",
+          delete: "Delete"
+        }
+      },
+      sales: {
+        title: "Revenue by category",
+        subtitle: "Compare momentum across the assortment.",
+        empty: "No category performance data yet."
+      },
+      form: {
+        createTitle: "Create product",
+        editTitle: "Edit product",
+        description: "Keep details concise and accurate so the storefront stays aligned.",
+        cancel: "Cancel",
+        createCta: "Create",
+        saveCta: "Save changes",
+        fields: {
+          name: "Name",
+          category: "Category",
+          price: "Price",
+          cost: "Cost",
+          stock: "Stock",
+          sold: "Sold",
+          description: "Description",
+          image: "Image URL",
+          tags: "Tags",
+          tagsPlaceholder: "Separate with commas"
+        },
+        validation: {
+          name: "Name is required",
+          category: "Category is required",
+          price: "Price must be zero or greater",
+          stock: "Stock must be zero or greater",
+          sold: "Sold must be zero or greater",
+          cost: "Cost must be zero or greater"
+        }
+      },
+      notifications: {
+        createSuccess: (name: string) => `${name} published successfully`,
+        createError: "We couldn't create that product.",
+        updateSuccess: (name: string) => `${name} updated`,
+        updateError: "We couldn't save those changes.",
+        deleteSuccess: (name: string) => `${name} archived`,
+        deleteError: "We couldn't delete that product.",
+        confirmDelete: (name: string) => `Archive ${name}?`
+      }
     }
   },
   "pt-BR": {
@@ -254,7 +441,8 @@ export const translations: Record<Locale, AppMessages> = {
         cartCta: "Conheça a coleção",
         openCart: "Ver carrinho",
         cartWithCount: (count: number) => `${count} itens no carrinho`,
-        language: "Idioma"
+        language: "Idioma",
+        admin: "Abrir painel administrativo"
       }
     },
     hero: {
@@ -378,6 +566,102 @@ export const translations: Record<Locale, AppMessages> = {
       terms: "Termos",
       privacy: "Privacidade",
       contactEmail: "ola@shopperyas.com"
+    },
+    admin: {
+      gate: {
+        title: "Acesso da equipe",
+        subtitle: "Informe o código de acesso do estúdio para continuar.",
+        label: "Código de acesso",
+        placeholder: "••••••",
+        submit: "Desbloquear",
+        error: "Código inválido. Tente novamente."
+      },
+      intro: {
+        eyebrow: "Operações",
+        title: "Central de merchandising",
+        subtitle: "Acompanhe desempenho, ajuste o mix e mantenha cada lançamento alinhado.",
+        primaryCta: "Novo produto",
+        logout: "Sair",
+        loading: "Carregando indicadores…",
+        error: "Não foi possível carregar os dados do painel."
+      },
+      metrics: {
+        title: "Visão de performance",
+        subtitle: "Indicadores em tempo real de giro, estoque e projeção de receita.",
+        totalProducts: "Estilos ativos",
+        totalStock: "Unidades em estoque",
+        totalSold: "Unidades vendidas",
+        inventoryValue: "Valor de estoque",
+        salesRevenue: "Receita realizada",
+        potentialRevenue: "Receita potencial",
+        placeholders: [
+          { label: "Estilos ativos", value: "—" },
+          { label: "Unidades em estoque", value: "—" },
+          { label: "Unidades vendidas", value: "—" },
+          { label: "Valor de estoque", value: "—" },
+          { label: "Receita realizada", value: "—" },
+          { label: "Receita potencial", value: "—" }
+        ]
+      },
+      inventory: {
+        title: "Visão do catálogo",
+        subtitle: "Acompanhe disponibilidade e ajuste o mix em tempo real.",
+        empty: "Adicione o primeiro produto para preencher o catálogo.",
+        columns: {
+          name: "Nome",
+          category: "Categoria",
+          stock: "Estoque",
+          sold: "Vendidos",
+          price: "Preço",
+          actions: "Ações"
+        },
+        actions: {
+          edit: "Editar",
+          delete: "Excluir"
+        }
+      },
+      sales: {
+        title: "Receita por categoria",
+        subtitle: "Compare o ritmo de cada linha.",
+        empty: "Ainda não há dados de categoria."
+      },
+      form: {
+        createTitle: "Criar produto",
+        editTitle: "Editar produto",
+        description: "Mantenha as informações objetivas para alinhar com a vitrine.",
+        cancel: "Cancelar",
+        createCta: "Criar",
+        saveCta: "Salvar alterações",
+        fields: {
+          name: "Nome",
+          category: "Categoria",
+          price: "Preço",
+          cost: "Custo",
+          stock: "Estoque",
+          sold: "Vendidos",
+          description: "Descrição",
+          image: "URL da imagem",
+          tags: "Tags",
+          tagsPlaceholder: "Separe com vírgulas"
+        },
+        validation: {
+          name: "Informe o nome",
+          category: "Informe a categoria",
+          price: "O preço deve ser maior ou igual a zero",
+          stock: "O estoque deve ser maior ou igual a zero",
+          sold: "Vendidos deve ser maior ou igual a zero",
+          cost: "O custo deve ser maior ou igual a zero"
+        }
+      },
+      notifications: {
+        createSuccess: (name: string) => `${name} publicado com sucesso`,
+        createError: "Não foi possível criar o produto.",
+        updateSuccess: (name: string) => `${name} atualizado`,
+        updateError: "Não foi possível salvar as alterações.",
+        deleteSuccess: (name: string) => `${name} removido`,
+        deleteError: "Não foi possível excluir o produto.",
+        confirmDelete: (name: string) => `Excluir ${name}?`
+      }
     }
   },
   es: {
@@ -392,7 +676,8 @@ export const translations: Record<Locale, AppMessages> = {
         cartCta: "Descubre la colección",
         openCart: "Ver carrito",
         cartWithCount: (count: number) => `${count} artículos en el carrito`,
-        language: "Idioma"
+        language: "Idioma",
+        admin: "Abrir panel administrativo"
       }
     },
     hero: {
@@ -516,6 +801,102 @@ export const translations: Record<Locale, AppMessages> = {
       terms: "Términos",
       privacy: "Privacidad",
       contactEmail: "hola@shopperyas.com"
+    },
+    admin: {
+      gate: {
+        title: "Acceso del equipo",
+        subtitle: "Ingresa el código de acceso del estudio para continuar.",
+        label: "Código de acceso",
+        placeholder: "••••••",
+        submit: "Desbloquear",
+        error: "Código incorrecto. Inténtalo de nuevo."
+      },
+      intro: {
+        eyebrow: "Operaciones",
+        title: "Centro de merchandising",
+        subtitle: "Supervisa el impulso, ajusta el surtido y mantén cada lanzamiento alineado.",
+        primaryCta: "Nuevo producto",
+        logout: "Cerrar sesión",
+        loading: "Cargando indicadores…",
+        error: "No pudimos cargar los datos del panel."
+      },
+      metrics: {
+        title: "Instantánea de desempeño",
+        subtitle: "Indicadores en vivo de rotación, inventario y proyección de ingresos.",
+        totalProducts: "Estilos activos",
+        totalStock: "Unidades en inventario",
+        totalSold: "Unidades vendidas",
+        inventoryValue: "Valor de inventario",
+        salesRevenue: "Ingresos realizados",
+        potentialRevenue: "Ingresos potenciales",
+        placeholders: [
+          { label: "Estilos activos", value: "—" },
+          { label: "Unidades en inventario", value: "—" },
+          { label: "Unidades vendidas", value: "—" },
+          { label: "Valor de inventario", value: "—" },
+          { label: "Ingresos realizados", value: "—" },
+          { label: "Ingresos potenciales", value: "—" }
+        ]
+      },
+      inventory: {
+        title: "Visión del catálogo",
+        subtitle: "Controla la disponibilidad y ajusta el mix en tiempo real.",
+        empty: "Agrega tu primer producto para completar el catálogo.",
+        columns: {
+          name: "Nombre",
+          category: "Categoría",
+          stock: "Inventario",
+          sold: "Vendidos",
+          price: "Precio",
+          actions: "Acciones"
+        },
+        actions: {
+          edit: "Editar",
+          delete: "Eliminar"
+        }
+      },
+      sales: {
+        title: "Ingresos por categoría",
+        subtitle: "Compara el ritmo de cada línea.",
+        empty: "Aún no hay datos por categoría."
+      },
+      form: {
+        createTitle: "Crear producto",
+        editTitle: "Editar producto",
+        description: "Mantén la información precisa para alinear la tienda.",
+        cancel: "Cancelar",
+        createCta: "Crear",
+        saveCta: "Guardar cambios",
+        fields: {
+          name: "Nombre",
+          category: "Categoría",
+          price: "Precio",
+          cost: "Costo",
+          stock: "Inventario",
+          sold: "Vendidos",
+          description: "Descripción",
+          image: "URL de la imagen",
+          tags: "Etiquetas",
+          tagsPlaceholder: "Sepáralas con comas"
+        },
+        validation: {
+          name: "Ingresa un nombre",
+          category: "Ingresa una categoría",
+          price: "El precio debe ser mayor o igual a cero",
+          stock: "El inventario debe ser mayor o igual a cero",
+          sold: "Vendidos debe ser mayor o igual a cero",
+          cost: "El costo debe ser mayor o igual a cero"
+        }
+      },
+      notifications: {
+        createSuccess: (name: string) => `${name} publicado con éxito`,
+        createError: "No pudimos crear el producto.",
+        updateSuccess: (name: string) => `${name} actualizado`,
+        updateError: "No pudimos guardar los cambios.",
+        deleteSuccess: (name: string) => `${name} eliminado`,
+        deleteError: "No pudimos eliminar el producto.",
+        confirmDelete: (name: string) => `¿Eliminar ${name}?`
+      }
     }
   }
 };
