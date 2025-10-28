@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 
 import type { ProductDraft } from "../../types";
 import { useMessages } from "../../contexts/LocalizationContext";
@@ -53,6 +53,25 @@ function ProductFormDrawer({ open, mode, initialValues, onSubmit, onClose }: Pro
   if (!open) {
     return null;
   }
+
+  const handleIntegerChange = (field: "price" | "cost" | "stock" | "sold") =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const rawValue = event.target.value;
+      if (rawValue === "") {
+        setValues((prev) => ({ ...prev, [field]: 0 }));
+        return;
+      }
+
+      const parsed = Number(rawValue);
+      if (!Number.isFinite(parsed)) {
+        return;
+      }
+
+      setValues((prev) => ({
+        ...prev,
+        [field]: Math.max(0, Math.round(parsed))
+      }));
+    };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -129,9 +148,10 @@ function ProductFormDrawer({ open, mode, initialValues, onSubmit, onClose }: Pro
               <input
                 type="number"
                 min={0}
-                step="0.01"
+                step={1}
+                inputMode="numeric"
                 value={values.price}
-                onChange={(event) => setValues((prev) => ({ ...prev, price: Number(event.target.value) }))}
+                onChange={handleIntegerChange("price")}
               />
               {errors.price ? <small className="admin-form__error">{errors.price}</small> : null}
             </label>
@@ -140,9 +160,10 @@ function ProductFormDrawer({ open, mode, initialValues, onSubmit, onClose }: Pro
               <input
                 type="number"
                 min={0}
-                step="0.01"
+                step={1}
+                inputMode="numeric"
                 value={values.cost}
-                onChange={(event) => setValues((prev) => ({ ...prev, cost: Number(event.target.value) }))}
+                onChange={handleIntegerChange("cost")}
               />
               {errors.cost ? <small className="admin-form__error">{errors.cost}</small> : null}
             </label>
@@ -152,8 +173,9 @@ function ProductFormDrawer({ open, mode, initialValues, onSubmit, onClose }: Pro
                 type="number"
                 min={0}
                 step={1}
+                inputMode="numeric"
                 value={values.stock}
-                onChange={(event) => setValues((prev) => ({ ...prev, stock: Number(event.target.value) }))}
+                onChange={handleIntegerChange("stock")}
               />
               {errors.stock ? <small className="admin-form__error">{errors.stock}</small> : null}
             </label>
@@ -163,8 +185,9 @@ function ProductFormDrawer({ open, mode, initialValues, onSubmit, onClose }: Pro
                 type="number"
                 min={0}
                 step={1}
+                inputMode="numeric"
                 value={values.sold}
-                onChange={(event) => setValues((prev) => ({ ...prev, sold: Number(event.target.value) }))}
+                onChange={handleIntegerChange("sold")}
               />
               {errors.sold ? <small className="admin-form__error">{errors.sold}</small> : null}
             </label>
