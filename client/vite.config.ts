@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => {
 
   let proxyTarget = `http://localhost:${serverPort}`;
   try {
-    proxyTarget = new URL(apiBaseUrl).origin;
+    const parsedApiBaseUrl = new URL(apiBaseUrl);
+    proxyTarget = `${parsedApiBaseUrl.origin}${parsedApiBaseUrl.pathname.replace(/\/$/, "")}`;
   } catch {
     // fall back to the default localhost target when the URL is invalid
   }
