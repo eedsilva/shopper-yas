@@ -4,8 +4,6 @@ import { createApp } from "../index";
 import { seedDatabase } from "../lib/seed";
 import * as healthService from "../services/health";
 
-const app = createApp();
-
 describe("health route", () => {
   beforeEach(async () => {
     await seedDatabase();
@@ -16,6 +14,7 @@ describe("health route", () => {
   });
 
   it("reports API and database as healthy", async () => {
+    const app = createApp();
     const response = await request(app).get("/api/health");
 
     expect(response.status).toBe(200);
@@ -31,6 +30,7 @@ describe("health route", () => {
       error: "forced failure",
     });
 
+    const app = createApp();
     const response = await request(app).get("/api/health");
 
     expect(response.status).toBe(503);
