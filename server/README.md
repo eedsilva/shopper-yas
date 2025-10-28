@@ -31,6 +31,7 @@ npm run dev
 
 The API is served from `http://localhost:4000` and exposes the following notable routes:
 
+- `GET /api/health` — combined API + database liveness check (200 when both layers respond, 503 when the DB probe fails).
 - `GET /api/products` — list products with optional filters.
 - `POST /api/products` — create products (requires stock/sold/cost payload).
 - `PATCH /api/products/:id` — update product fields or tags.
@@ -47,3 +48,8 @@ npm test
 ```
 
 `npm test` runs the suite in-band so migrations and seeds stay deterministic.
+
+## Deployment checklist
+
+- [ ] Deploy the API service.
+- [ ] Run `GET /api/health` and confirm both `api` and `database` statuses report `ok` (HTTP 200). A 503 indicates degraded database connectivity.

@@ -135,6 +135,7 @@ Open the Admin tab from the storefront to manage products and orders.
 | Method | Endpoint | Description |
 | --- | --- | --- |
 | `GET` | `/` | Health check (`Shopper YAS API is running 🚀`). |
+| `GET` | `/api/health` | API + database status probe. Returns 200 when both are OK, 503 if the database is unreachable. |
 | `GET` | `/api/products` | Fetch all catalog products. |
 | `GET` | `/api/products/:id` | Fetch a single product by numeric `id`. |
 
